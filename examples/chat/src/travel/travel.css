@@ -1,0 +1,176 @@
+.travel-photos {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 4px;
+  border-radius: var(--oui-radius-xl);
+  overflow: hidden;
+}
+
+.travel-photos img,
+.travel-photo-empty {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  background: var(--oui-bg-surface-secondary);
+}
+
+.travel-photos img,
+.travel-itinerary img,
+.travel-suggestions img {
+  display: block;
+}
+
+.travel-photo-empty {
+  display: grid;
+  place-items: center;
+  color: var(--oui-fg-tertiary);
+}
+
+.travel-photo-empty svg {
+  width: 40%;
+  max-width: 32px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+}
+
+.travel-map {
+  position: relative;
+  height: 320px;
+  border-radius: var(--oui-radius-xl);
+  overflow: hidden;
+  background: var(--oui-bg-surface-secondary);
+}
+
+/* Beats maplibre's own .maplibregl-map rule, which loads later with the map. */
+.travel-map .travel-map-canvas {
+  position: absolute;
+  inset: 0;
+}
+
+.travel-map-canvas canvas {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.travel-map-canvas.ready canvas {
+  opacity: 1;
+}
+
+.travel-pin {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border: 2px solid var(--oui-bg-surface);
+  border-radius: 50%;
+  background: var(--oui-fg-default);
+  color: var(--oui-fg-inverse);
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: var(--oui-shadow);
+}
+
+.travel-pin.dimmed {
+  opacity: 0.3;
+}
+
+.travel-filters {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 0;
+  padding-right: 24px;
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  /* Fades the last chip at the edge, so a row that scrolls looks like one. */
+  mask-image: linear-gradient(to right, #000 calc(100% - 32px), transparent);
+}
+
+.travel-filters button,
+.travel-itinerary button,
+.travel-suggestions button {
+  font: inherit;
+  font-size: var(--oui-text-sm);
+  padding: 4px 12px;
+  border: 1px solid var(--oui-border-default);
+  border-radius: 999px;
+  background: var(--oui-bg-surface);
+  color: var(--oui-fg-default);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.travel-filters button[aria-pressed="true"] {
+  background: var(--oui-fg-default);
+  color: var(--oui-bg-surface);
+}
+
+.travel-map-note {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--oui-bg-surface);
+  font-size: var(--oui-text-xs);
+  color: var(--oui-fg-secondary);
+}
+
+.travel-itinerary {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.travel-itinerary li {
+  display: grid;
+  grid-template-columns: 72px 1fr auto;
+  gap: 12px;
+  align-items: start;
+}
+
+.travel-itinerary li.removed {
+  opacity: 0.5;
+}
+
+.travel-itinerary img,
+.travel-itinerary .travel-photo-empty,
+.travel-suggestions img,
+.travel-suggestions .travel-photo-empty {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--oui-radius-md);
+  background: var(--oui-bg-surface-secondary);
+}
+
+.travel-itinerary p {
+  margin: 2px 0 0;
+  color: var(--oui-fg-secondary);
+  font-size: var(--oui-text-sm);
+}
+
+.travel-meta {
+  display: block;
+  font-size: var(--oui-text-xs);
+  color: var(--oui-fg-tertiary);
+}
+
+.travel-suggestions {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.travel-suggestions > div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}

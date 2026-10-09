@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Chat</title>
+    <style>
+      html,
+      body,
+      #root {
+        height: 100%;
+        margin: 0;
+      }
+      /* The thread follows each answer to its end (scrollVariant="always"), so the room react-ui
+         keeps below the last message would only scroll a short answer's question out of view. */
+      #root .openui-agent-thread-messages > :last-child {
+        min-height: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module">
+      // OpenUI's Inspect widget inspects OpenUI Lang answers only. Presetting its internal
+      // once-per-page mount guard keeps it from mounting.
+      globalThis[Symbol.for("openui.devtools.autoMount")] = true;
+    </script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

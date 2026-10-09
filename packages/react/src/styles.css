@@ -1,0 +1,645 @@
+/* Colors follow the Renderer's `theme`, never the OS, so they match the page around them. */
+.oui-root {
+  color-scheme: light;
+  --oui-space: 4px;
+  --oui-radius-3xs: 2px;
+  --oui-radius-2xs: 4px;
+  --oui-radius-xs: 6px;
+  --oui-radius-sm: 8px;
+  --oui-radius-md: 10px;
+  --oui-radius-lg: 12px;
+  --oui-radius-xl: 14px;
+  --oui-radius-2xl: 16px;
+  --oui-radius-3xl: 20px;
+  --oui-radius-4xl: 24px;
+  --oui-text-3xs: 10px;
+  --oui-text-2xs: 11px;
+  --oui-text-xs: 12px;
+  --oui-text-sm: 13px;
+  --oui-text-md: 15px;
+  --oui-text-lg: 17px;
+  --oui-text-xl: 20px;
+  --oui-text-2xl: 24px;
+  --oui-text-3xl: 30px;
+  --oui-text-4xl: 36px;
+  --oui-fg-default: light-dark(#111418, #ececf1);
+  --oui-fg-secondary: light-dark(#5d6470, #a3a9b4);
+  --oui-fg-tertiary: light-dark(#6b7280, #8a909a);
+  --oui-fg-disabled: light-dark(#b4b8bf, #5c6168);
+  --oui-fg-inverse: light-dark(#ffffff, #111418);
+  --oui-fg-primary: light-dark(#2563eb, #6ea0ff);
+  --oui-fg-info: light-dark(#2563eb, #6ea0ff);
+  --oui-fg-success: light-dark(#15803d, #4ade80);
+  --oui-fg-danger: light-dark(#dc2626, #f87171);
+  --oui-fg-caution: light-dark(#b45309, #fbbf24);
+  --oui-fg-warning: light-dark(#b45309, #fbbf24);
+  --oui-bg-surface: light-dark(#ffffff, #16181c);
+  --oui-bg-surface-secondary: light-dark(#f3f4f6, #212328);
+  --oui-bg-surface-tertiary: light-dark(#e7e9ed, #2c2f35);
+  --oui-bg-surface-elevated: light-dark(#ffffff, #1c1e22);
+  --oui-bg-primary: light-dark(#2563eb, #3b82f6);
+  --oui-bg-info: light-dark(#e8f0fe, #172554);
+  --oui-bg-success: light-dark(#d9f2e1, #0f2e1d);
+  --oui-bg-danger: light-dark(#fbe0e0, #3b1414);
+  --oui-bg-warning: light-dark(#fdf3e2, #3a2a0c);
+  --oui-bg-caution: light-dark(#fdf3e2, #3a2a0c);
+  --oui-border-subtle: light-dark(#eceef1, #26292e);
+  --oui-border-default: light-dark(#dfe2e6, #33363d);
+  --oui-border-strong: light-dark(#b9bec6, #4b4f57);
+  --oui-shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(0, 0, 0, 0.06);
+  --oui-chart-1: #2563eb;
+  --oui-chart-2: #15803d;
+  --oui-chart-3: #c2410c;
+  --oui-chart-4: #7c3aed;
+  --oui-chart-5: #db2777;
+  --oui-chart-6: #0e7490;
+  color: var(--oui-fg-default);
+  font:
+    15px/1.55 ui-sans-serif,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
+  isolation: isolate;
+}
+/* Model-written sizes and margins must not paint over the page around the answer. The 4px
+   bleed keeps focus rings at the edge visible. */
+.oui-grow {
+  contain: paint;
+  margin: -4px;
+  padding: 4px;
+}
+.oui-root[data-theme="dark"] {
+  color-scheme: dark;
+}
+.oui-root a {
+  color: var(--oui-fg-primary);
+  text-underline-offset: 2px;
+}
+
+.oui-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.oui-box {
+  box-sizing: border-box;
+  min-width: 0;
+}
+/* A row of fields keeps each field usable: below that it wraps instead of squeezing them. */
+.oui-dir-row:has(> .oui-box > .oui-input, > .oui-input) {
+  flex-wrap: wrap;
+}
+.oui-dir-row > .oui-box:has(> .oui-input),
+.oui-dir-row > .oui-input {
+  min-width: min(100%, 96px);
+}
+.oui-card {
+  border: 1px solid var(--oui-border-default);
+  border-radius: var(--oui-radius-2xl);
+  padding: 12px;
+}
+@media (min-width: 768px) {
+  .oui-card {
+    padding: 16px;
+  }
+}
+.oui-text {
+  margin: 0;
+}
+.oui-title {
+  font-weight: 600;
+  line-height: 1.3;
+}
+.oui-title-xs {
+  font-size: var(--oui-text-sm);
+}
+.oui-title-sm {
+  font-size: var(--oui-text-md);
+}
+.oui-title-md {
+  font-size: var(--oui-text-lg);
+}
+.oui-title-lg {
+  font-size: var(--oui-text-xl);
+}
+.oui-title-xl {
+  font-size: var(--oui-text-2xl);
+}
+.oui-title-2xl {
+  font-size: var(--oui-text-3xl);
+}
+.oui-title-3xl,
+.oui-title-4xl {
+  font-size: var(--oui-text-4xl);
+}
+.oui-caption {
+  font-size: var(--oui-text-xs);
+  color: var(--oui-fg-secondary);
+}
+.oui-label {
+  font-size: var(--oui-text-sm);
+  font-weight: 500;
+}
+.oui-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.9em;
+  background: var(--oui-bg-surface-secondary);
+  padding: 1px 4px;
+  border-radius: 4px;
+}
+.oui-code-block {
+  min-width: 0;
+  border-radius: var(--oui-radius-md);
+  background: var(--oui-bg-surface-secondary);
+}
+.oui-code-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 6px 0 12px;
+  font-size: var(--oui-text-xs);
+  color: var(--oui-fg-secondary);
+}
+.oui-code-head button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  border-radius: var(--oui-radius-xs);
+  padding: 2px 6px;
+  cursor: pointer;
+}
+.oui-code-head button:hover {
+  background: var(--oui-bg-surface-tertiary);
+}
+.oui-code-block pre {
+  margin: 0;
+  padding: 4px 12px 10px;
+  overflow-x: auto;
+  font:
+    13px/1.5 ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    monospace;
+}
+.oui-list {
+  margin: 0;
+  padding-left: 1.4em;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.oui-divider {
+  border: 0;
+  border-top: 1px solid var(--oui-border-default);
+  margin: 4px 0;
+  width: 100%;
+}
+.oui-icon {
+  width: 1.15em;
+  height: 1.15em;
+  flex: none;
+  vertical-align: -0.2em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.oui-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--oui-text-xs);
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--oui-bg-surface-secondary);
+  color: var(--oui-fg-secondary);
+  width: fit-content;
+}
+.oui-badge-success {
+  background: var(--oui-bg-success);
+  color: var(--oui-fg-success);
+}
+.oui-badge-danger {
+  background: var(--oui-bg-danger);
+  color: var(--oui-fg-danger);
+}
+.oui-badge-warning,
+.oui-badge-caution {
+  background: var(--oui-bg-warning);
+  color: var(--oui-fg-warning);
+}
+.oui-badge-info,
+.oui-badge-primary {
+  background: var(--oui-bg-info);
+  color: var(--oui-fg-info);
+}
+
+.oui-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  /* A pill at one line of text, a rounded card when taller (a game tile, say). */
+  border-radius: var(--oui-radius-3xl);
+  border: 1px solid transparent;
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 6px 14px;
+}
+.oui-dir-row > .oui-button {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+/* A square tile, for game boards. */
+.oui-button.oui-square {
+  aspect-ratio: 1;
+  padding: 0;
+  border-radius: var(--oui-radius-lg);
+  font-size: var(--oui-text-2xl);
+  min-width: 0;
+}
+.oui-btn-solid.oui-btn-primary {
+  background: var(--oui-fg-default);
+  color: var(--oui-bg-surface);
+}
+.oui-btn-solid.oui-btn-secondary {
+  background: var(--oui-bg-surface-secondary);
+  color: var(--oui-fg-default);
+}
+.oui-btn-solid.oui-btn-danger {
+  background: var(--oui-fg-danger);
+  color: light-dark(#fff, #450a0a);
+}
+.oui-btn-solid.oui-btn-success {
+  background: var(--oui-fg-success);
+  color: light-dark(#fff, #052e16);
+}
+.oui-btn-outline {
+  background: transparent;
+  border-color: var(--oui-border-default);
+  color: var(--oui-fg-default);
+}
+.oui-btn-ghost {
+  background: transparent;
+  color: var(--oui-fg-default);
+}
+/* Touch screens keep :hover on the last tapped element, which would look selected. */
+@media (hover: hover) {
+  .oui-btn-ghost:hover:enabled,
+  .oui-btn-outline:hover:enabled {
+    background: var(--oui-bg-surface-secondary);
+  }
+  .oui-btn-soft:hover:enabled {
+    background: var(--oui-bg-surface-tertiary);
+  }
+}
+.oui-btn-soft {
+  background: var(--oui-bg-surface-secondary);
+  color: var(--oui-fg-default);
+}
+.oui-btn-soft.oui-btn-danger {
+  background: var(--oui-bg-danger);
+}
+.oui-btn-soft.oui-btn-success {
+  background: var(--oui-bg-success);
+}
+:is(.oui-btn-outline, .oui-btn-ghost, .oui-btn-soft).oui-btn-danger {
+  color: var(--oui-fg-danger);
+}
+:is(.oui-btn-outline, .oui-btn-ghost, .oui-btn-soft).oui-btn-success {
+  color: var(--oui-fg-success);
+}
+/* Muted instead of faded, so disabled content stays readable; a success or danger button
+   keeps its color, so its status still shows. */
+.oui-button:disabled {
+  cursor: default;
+  background: var(--oui-bg-surface-tertiary);
+  border-color: transparent;
+  color: var(--oui-fg-secondary);
+}
+/* An outline or ghost button stays unfilled when disabled, so it still differs from a solid one. */
+:is(.oui-btn-outline, .oui-btn-ghost).oui-button:disabled {
+  background: transparent;
+}
+.oui-btn-outline.oui-button:disabled {
+  border-color: var(--oui-border-default);
+}
+.oui-button.oui-btn-success:disabled {
+  background: var(--oui-bg-success);
+  color: var(--oui-fg-success);
+}
+.oui-button.oui-btn-danger:disabled {
+  background: var(--oui-bg-danger);
+  color: var(--oui-fg-danger);
+}
+.oui-size-xs.oui-button {
+  padding: 2px 8px;
+  font-size: var(--oui-text-xs);
+}
+.oui-size-sm.oui-button {
+  padding: 4px 10px;
+  font-size: var(--oui-text-sm);
+}
+.oui-size-lg.oui-button {
+  padding: 9px 18px;
+}
+.oui-block {
+  width: 100%;
+}
+
+.oui-input {
+  box-sizing: border-box;
+  width: 100%;
+  font: inherit;
+  color: inherit;
+  background: var(--oui-bg-surface);
+  border: 1px solid var(--oui-border-default);
+  border-radius: 999px;
+  padding: 6px 14px;
+  outline: none;
+}
+textarea.oui-input {
+  border-radius: var(--oui-radius-lg);
+  resize: vertical;
+}
+.oui-input:focus {
+  border-color: var(--oui-border-strong);
+}
+.oui-input:focus-visible {
+  outline: 2px solid var(--oui-fg-primary);
+  outline-offset: 1px;
+}
+.oui-input::placeholder {
+  color: var(--oui-fg-tertiary);
+  opacity: 1;
+}
+.oui-size-xs.oui-input {
+  padding: 2px 8px;
+  font-size: var(--oui-text-xs);
+}
+.oui-size-sm.oui-input {
+  padding: 3px 10px;
+  font-size: var(--oui-text-sm);
+}
+.oui-size-lg.oui-input {
+  padding: 9px 16px;
+}
+.oui-select {
+  appearance: auto;
+}
+.oui-slider {
+  width: 100%;
+  margin: 0;
+  accent-color: var(--oui-fg-default);
+}
+.oui-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+/* Drawn here rather than by the browser, whose dark-scheme boxes look filled and disabled. */
+.oui-checkbox input {
+  appearance: none;
+  flex: none;
+  display: grid;
+  place-content: center;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  /* 3:1 against the surface, so an unchecked box reads in light mode too. */
+  border: 1.5px solid light-dark(#8a909a, var(--oui-fg-tertiary));
+  border-radius: 5px;
+  background: var(--oui-bg-surface);
+  cursor: pointer;
+}
+.oui-checkbox input[type="radio"] {
+  border-radius: 50%;
+}
+.oui-checkbox input::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background: var(--oui-bg-surface);
+  transform: scale(0);
+}
+.oui-checkbox input[type="checkbox"]::before {
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+.oui-checkbox input[type="radio"]::before {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.oui-checkbox input:checked {
+  border-color: var(--oui-fg-default);
+  background: var(--oui-fg-default);
+}
+.oui-checkbox input:checked::before {
+  transform: scale(1);
+}
+.oui-checkbox input:focus-visible {
+  outline: 2px solid var(--oui-fg-primary);
+  outline-offset: 2px;
+}
+.oui-checkbox:has(input:disabled) {
+  cursor: default;
+  opacity: 0.5;
+}
+/* A caption right after a checkbox lines up under its label. */
+.oui-checkbox + .oui-caption {
+  padding-left: 26px;
+}
+.oui-radio-group {
+  display: flex;
+  gap: 6px;
+}
+
+/* Labels never wrap; options that do not fit scroll sideways. */
+.oui-segmented {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  border-radius: 999px;
+  background: var(--oui-bg-surface-secondary);
+  width: fit-content;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.oui-segmented.oui-block {
+  display: flex;
+  width: 100%;
+}
+.oui-segmented button {
+  flex: 1 0 0;
+  min-width: max-content;
+  white-space: nowrap;
+  border: 0;
+  background: transparent;
+  color: var(--oui-fg-secondary);
+  font: inherit;
+  font-size: var(--oui-text-sm);
+  padding: 4px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.oui-segmented button.oui-on {
+  background: light-dark(var(--oui-bg-surface), var(--oui-border-strong));
+  color: var(--oui-fg-default);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+}
+.oui-pressable {
+  cursor: pointer;
+}
+.oui-pressable:hover {
+  filter: brightness(0.98);
+}
+
+.oui-image {
+  display: block;
+}
+.oui-image-missing {
+  display: grid;
+  place-items: center;
+  box-sizing: border-box;
+  background: var(--oui-bg-surface-secondary);
+  color: var(--oui-fg-tertiary);
+  font-size: var(--oui-text-2xl);
+}
+
+.oui-table-scroll {
+  overflow-x: auto;
+}
+.oui-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: var(--oui-text-sm);
+}
+.oui-table th,
+.oui-table td {
+  text-align: left;
+  vertical-align: top;
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--oui-border-subtle);
+}
+.oui-table :is(th, td):first-child {
+  padding-left: 0;
+}
+.oui-table th {
+  font-weight: 600;
+}
+.oui-table .oui-text {
+  margin: 0;
+}
+
+.oui-root[data-streaming] .oui-enter {
+  animation: oui-enter 420ms cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+.oui-root[data-streaming] .oui-fresh {
+  animation: oui-word 700ms ease-out backwards;
+}
+@keyframes oui-enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes oui-word {
+  0% {
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .oui-root[data-streaming] .oui-enter,
+  .oui-root[data-streaming] .oui-fresh {
+    animation: none;
+  }
+}
+
+.oui-fallback {
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  background: var(--oui-bg-surface-secondary, #f7f7f8);
+}
+.oui-fallback-note {
+  margin: 0 0 6px;
+  font-size: 13px;
+  color: var(--oui-fg-secondary, #676767);
+}
+.oui-fallback-text {
+  white-space: pre-wrap;
+  font-size: 14px;
+}
+
+.oui-chart {
+  width: 100%;
+  min-width: 0;
+}
+.oui-chart svg {
+  display: block;
+  overflow: visible;
+}
+.oui-chart-legend,
+.oui-pie-legend {
+  font-size: var(--oui-text-sm);
+  color: var(--oui-fg-secondary);
+}
+.oui-chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin-top: 8px;
+}
+.oui-chart-legend span,
+.oui-pie-legend div {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.oui-chart-legend i,
+.oui-pie-legend i {
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  flex: none;
+}
+.oui-pie {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+}
+.oui-pie-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1 1 140px;
+  min-width: 0;
+}
+.oui-pie-legend span {
+  flex: 1;
+  color: var(--oui-fg-default);
+}
+.oui-pie-legend strong {
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
